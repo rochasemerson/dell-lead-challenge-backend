@@ -16,7 +16,9 @@ import { UserModule } from './user/user.module';
     entities: [User],
     synchronize: true,
   }),
-  ConfigModule.forRoot({}),
+  ConfigModule.forRoot({
+    isGlobal: true
+  }),
     AuthModule,
     UserModule
   ]
