@@ -11,18 +11,22 @@ export class UserService {
     ) {}
 
     async getAllUsers() {
-        const users = await this.repo.find({
-            order: {
-                name: 'ASC'
-            }
-        })
+        const users = await this.repo.find()
+        return users
     }
 
     async editUser(id: string, dto: EditUserDto) {
-        const user = await this.repo.update(
+        await this.repo.update(
             id,
             dto
         )
+        const user = await this.repo.findOne({
+            where: {
+                id: id
+            }
+        })
+        delete user.hash
+        return user
     }
     
     async deleteUser(userId: string) {

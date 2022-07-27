@@ -1,5 +1,5 @@
 import { ForbiddenException, Injectable } from "@nestjs/common";
-import { AuthDto } from "./dto";
+import { SignIn, SignUp } from "./dto";
 import * as argon from 'argon2'
 import { InjectRepository } from "@nestjs/typeorm";
 import { User } from "src/model/user.entity";
@@ -22,7 +22,7 @@ export class AuthService {
         private config: ConfigService
         ) {}
 
-    async signup(dto: AuthDto) {
+    async signup(dto: SignUp) {
             const hash = await argon.hash(dto.password)
             const user = await this.repo.create({
                 name: dto.name,
@@ -39,7 +39,7 @@ export class AuthService {
             return this.signToken(user.id, user.email)
     }
 
-    async signin(dto: AuthDto) {
+    async signin(dto: SignIn) {
         const user = await this.repo.findOne({
             where: { email: dto.email }
         })
