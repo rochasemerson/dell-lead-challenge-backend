@@ -1,4 +1,3 @@
-import { Type } from "class-transformer";
 import { IsNotEmpty, IsNumber, IsString } from "class-validator";
 
 export class ProductDto {
@@ -17,16 +16,16 @@ export class ProductDto {
     imgUrl: string
 }
 
-export class PriceDto {
-    @IsNotEmpty()
+export class EditProductDto {
+    @IsString()
+    name: string
+
     @IsNumber()
     price: number
-}
 
-export class MixedDto {
-    @Type(() => PriceDto)
-    params: PriceDto
+    @IsString()
+    description: string
 
-    @Type(() => ProductDto)
-    body: ProductDto
+    @IsString()
+    imgUrl: string
 }

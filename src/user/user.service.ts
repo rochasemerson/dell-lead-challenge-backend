@@ -20,18 +20,14 @@ export class UserService {
             id,
             dto
         )
-        const user = await this.repo.findOne({
-            where: {
-                id: id
-            }
+        const newUser = await this.repo.findOne({
+            where: {id: id}
         })
-        delete user.hash
-        return user
+        delete newUser.hash
+        return newUser
     }
     
-    async deleteUser(userId: string) {
-        const user = await this.repo.delete({
-            id: userId
-        })
+    async deleteUser(id: string) {
+        const user = await this.repo.delete({id})
     }
 }
