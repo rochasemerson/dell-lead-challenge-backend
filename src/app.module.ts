@@ -6,6 +6,8 @@ import { User } from './model/user.entity';
 import { UserModule } from './user/user.module';
 import { ProductModule } from './product/product.module';
 import { Product } from './model/product.entity';
+import { NetPromoterScore } from './model/nps.entity';
+import { NpsModule } from './nps/nps.module';
 
 @Module({
   imports: [TypeOrmModule.forRoot({
@@ -15,7 +17,7 @@ import { Product } from './model/product.entity';
     username: 'postgres',
     password: 'postgresDB',
     database: 'lead_challenge',
-    entities: [User, Product],
+    entities: [User, Product, NetPromoterScore],
     synchronize: true,
   }),
   ConfigModule.forRoot({
@@ -23,7 +25,8 @@ import { Product } from './model/product.entity';
   }),
     AuthModule,
     UserModule,
-    ProductModule
+    ProductModule,
+    NpsModule
   ]
 })
 export class AppModule { }

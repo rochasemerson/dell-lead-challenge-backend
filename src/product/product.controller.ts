@@ -24,9 +24,9 @@ export class ProductController {
         return this.productService.getSingleProduct(id)
     }
 
-    @Get('filter/:tag')
-    filterProducts(@Param('tag') tag: string) {
-        return this.productService.filterProducts(tag)
+    @Get('filter/:filter')
+    filterProducts(@Param('filter') filter: string) {
+        return this.productService.filterProducts(filter)
     }
 
     @Patch('edit/:id')

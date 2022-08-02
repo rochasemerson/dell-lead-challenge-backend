@@ -29,10 +29,10 @@ export class ProductService {
         return singleProduct
     }
 
-    async filterProducts(tag: string) {
+    async filterProducts(filter: string) {
         const products = await this.repo.find({
             where: {
-                name: Like(`%${tag}%`)
+                name: Like(`%${filter}%`)
             }
         })
         return products
