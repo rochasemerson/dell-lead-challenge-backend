@@ -20,7 +20,7 @@ export class UserService {
             id,
             dto
         )
-        const newUser = await this.repo.findOne({
+        const newUser = await this.repo.findOneOrFail({
             where: {id: id}
         })
         delete newUser.hash

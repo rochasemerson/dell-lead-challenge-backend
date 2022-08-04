@@ -13,9 +13,9 @@ export class NetPromoterScore {
     @Column({ type: 'varchar', length: 300 })
     label: string;
     
-    @ManyToOne(() => User, user => user.id)
+    @ManyToOne(() => User, users => User, {eager: true})
     user: User
     
-    @ManyToOne(() => Product, product => product.id)
+    @ManyToOne(() => Product, products => Product, {eager: true})
     product: Product
 }

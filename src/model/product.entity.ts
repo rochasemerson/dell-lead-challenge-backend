@@ -1,4 +1,5 @@
 import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
+import { NetPromoterScore } from './nps.entity';
 
 @Entity({ name: 'product' })
 export class Product {
@@ -16,4 +17,7 @@ export class Product {
     
     @Column({ type: 'varchar', length: 300 })
     imgUrl: string;
+
+    @OneToMany(() => NetPromoterScore, product => Product)
+    nps: NetPromoterScore[]
 }

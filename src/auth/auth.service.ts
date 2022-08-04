@@ -40,7 +40,7 @@ export class AuthService {
     }
 
     async signin(dto: SignIn) {
-        const user = await this.repo.findOne({
+        const user = await this.repo.findOneOrFail({
             where: { email: dto.email }
         })
 

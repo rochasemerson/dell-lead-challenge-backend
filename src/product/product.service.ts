@@ -51,7 +51,7 @@ export class ProductService {
             id,
             dto
         )
-        const newProduct = await this.repo.findOne({
+        const newProduct = await this.repo.findOneOrFail({
             where: {id}
         })
         return newProduct
