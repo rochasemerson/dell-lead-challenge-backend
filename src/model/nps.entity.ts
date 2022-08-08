@@ -16,6 +16,6 @@ export class NetPromoterScore {
     @ManyToOne(() => User, users => User, {eager: true})
     user: User
     
-    @ManyToOne(() => Product, products => Product, {eager: true})
+    @ManyToOne(() => Product, products => Product)
     product: Product
 }

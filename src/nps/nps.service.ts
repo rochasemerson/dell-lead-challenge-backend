@@ -14,10 +14,10 @@ export class NpsService {
         @InjectRepository(Product) private readonly productRepo: Repository<Product>
     ) {}
 
-    async createNps(npsDto: NpsDto) {
+    async createNps(npsDto: NpsDto, npsUser: User) {
                 
         const user = await this.userRepo.findOne({
-            where: {id: npsDto.userId}
+            where: {id: npsUser.id}
         })
         const product = await this.productRepo.findOne({
             where: {id: npsDto.productId}
@@ -51,26 +51,19 @@ export class NpsService {
         }
     }
 
-    async getScore(userId: string, productId: string) {
-        const user = await this.userRepo.findOneOrFail({
-            where: {id: userId}
+    async getScore(productId: string, user: User) {
+        const product = await this.productRepo.findOne({
+            where: {
+                id: productId
+            }
         })
-        const product = await this.productRepo.findOneOrFail({
-            where: {id: productId}
+
+        const score = await this.repo.findOne({
+            where: {
+                user: user,
+                product: product
+            }
         })
-        console.log(user, product);
-        
-        
-        if (!user || !product) {
-            throw new Error('User or Product Not Found')
-        } else { 
-            const nps = await this.repo.findOneOrFail({
-                where: {
-                    user: user.nps,
-                    product: product.nps
-                }
-            })
-            return nps.score
-        }
+        return score
     }
 }
