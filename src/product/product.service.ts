@@ -51,10 +51,8 @@ export class ProductService {
             id,
             dto
         )
-        const newProduct = await this.repo.findOneOrFail({
-            where: {id}
-        })
-        return newProduct
+        
+        return this.repo.findOne({where: {id}})
     }
 
     async deleteProduct(id: string) {

@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsNumber, IsString } from "class-validator"
+import { IsNotEmpty, IsNumber, IsOptional, IsString } from "class-validator"
 
 export class NpsDto {
     @IsNumber()
@@ -8,4 +8,14 @@ export class NpsDto {
     @IsString()
     @IsNotEmpty()
     productId: string
+}
+
+export class NpsEditDto {
+    @IsNumber()
+    @IsNotEmpty()
+    score: number
+    
+    @IsString()
+    @IsOptional()
+    label?: string
 }
